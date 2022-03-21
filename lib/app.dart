@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'color.dart';
-import 'login_page.dart';
+import '../color.dart';
+// import '../login_page.dart';
 // import 'mypage.dart';
 
 
