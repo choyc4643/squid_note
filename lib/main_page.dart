@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../utils.dart';
+import 'textstyle.dart';
+import 'writing_page.dart';
 
 class WeekCalendar extends StatefulWidget {
   @override
@@ -81,44 +83,139 @@ class _WeekCalendarState extends State<WeekCalendar> {
     }
   }
 
+  Widget? defaultBuilder(context, day1, day2) {
+    return Container(
+      child: Stack(
+        children: [
+          const Center(
+            child: SizedBox(
+                width: 40,
+                height: 40,
+                child: Image(
+                  image: AssetImage('assets/hamburger1.png'),
+                )),
+          ),
+          Center(
+            child: Text(
+              day1.day.toString(),
+              style: const TextStyle(
+                  // fontSize: 12,
+                  ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
-   Widget? defaultBuilder(context, day1, day2) {
-                      return Container(
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: SizedBox(
-                                width: 40,
-                                height: 40,
-                                child: Image(image: AssetImage('assets/hamburger1.png'),)
-                              ),
-                            ),
-                            Center(
-                              child: Text(
-                                day1.day.toString(),
-                                style: const TextStyle(
-                                  // fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    }
+  Future<dynamic> SelectDialog() {
+    return showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(children: [
+          Dialog(
+              backgroundColor: const Color(0xff00203E),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              child: SizedBox(
+                height: 300,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        '아침',
+                        style: headingstyle(size: 30, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WritingPage()),
+                        );
+                      },
+                    ),
+                    const Divider(
+                      color:  Color(0xffF3F4F6),
+                    ),
+                    ListTile(
+                      title: Text(
+                        '점심',
+                        style: headingstyle(size: 30, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WritingPage()),
+                        );
+                      },
+                    ),
+                    const Divider(
+                      color: Color(0xffF3F4F6),
+                    ),
+                    ListTile(
+                      title: Text(
+                        '저녁',
+                        style: headingstyle(size: 30, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WritingPage()),
+                        );
+                      },
+                    ),
+                    const Divider(
+                      color: Color(0xffF3F4F6),
+                    ),
+                    ListTile(
+                      title: Text(
+                        '야식',
+                        style: headingstyle(size: 30, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WritingPage()),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              )),
+        ]);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffC0CEDB),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          SelectDialog();
+        },
+        backgroundColor: const Color(0xff00203E),
+        child: const Icon(Icons.add),
+      ),
+      backgroundColor: const Color(0xffC0CEDB),
       body: Container(
-        margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+        margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
         child: Column(
           children: [
             TableCalendar<Event>(
-              headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
+              headerStyle: HeaderStyle(
+                titleTextStyle: headingstyle(size: 50),
+                formatButtonVisible: false,
+                titleCentered: true,
+              ),
               firstDay: kFirstDay,
               lastDay: kLastDay,
               focusedDay: _focusedDay,
@@ -129,11 +226,11 @@ class _WeekCalendarState extends State<WeekCalendar> {
               rangeSelectionMode: _rangeSelectionMode,
               eventLoader: _getEventsForDay,
               startingDayOfWeek: StartingDayOfWeek.sunday,
-              calendarStyle: CalendarStyle(
+              calendarStyle: const CalendarStyle(
                 // Use `CalendarStyle` to customize the UI
                 outsideDaysVisible: false,
               ),
-              calendarBuilders: CalendarBuilders(todayBuilder: defaultBuilder ),
+              calendarBuilders: CalendarBuilders(todayBuilder: defaultBuilder),
               onDaySelected: _onDaySelected,
               onRangeSelected: _onRangeSelected,
               onPageChanged: (focusedDay) {
@@ -151,29 +248,21 @@ class _WeekCalendarState extends State<WeekCalendar> {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xffF3F4F6),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 1.0, color: Colors.black)),
+                              color: const Color(0xffF3F4F6),
+                              borderRadius: BorderRadius.circular(10),
+                              border:
+                                  Border.all(width: 1.0, color: Colors.black)),
                           width: 340,
                           height: 100,
                           // color:  Color(0xffF3F4F6),
                           child: Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text('squid game')),
+                              padding: const EdgeInsets.all(20),
+                              child: const Text('squid game')),
 
                           margin: const EdgeInsets.symmetric(
                             horizontal: 12.0,
                             vertical: 10,
                           ),
-                          // decoration: BoxDecoration(
-                          //   border: Border.all(),
-                          //   borderRadius: BorderRadius.circular(12.0),
-                          // ),
-                          // child: ListTile(
-                          //   onTap: () => print('${value[index]}'),
-                          //   title: Text('${value[index]}'),
-                          // ),
                         ),
                       );
                     },
