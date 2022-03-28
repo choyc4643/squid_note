@@ -24,7 +24,7 @@ import 'color.dart';
 
 String uid = "";
 String uid_google = "";
-String name_user= "";
+String name_user = "";
 String email_user = "";
 String url_user = "";
 
@@ -33,8 +33,10 @@ Future<UserCredential> signInWithAnonynous() async {
 }
 
 Future<UserCredential> signInWithGoogle() async {
-  final GoogleSignInAccount? googleUser = await GoogleSignIn(scopes: ['profile', 'email']).signIn();
-  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  final GoogleSignInAccount? googleUser =
+      await GoogleSignIn(scopes: ['profile', 'email']).signIn();
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
   final credential = GoogleAuthProvider.credential(
     accessToken: googleAuth?.accessToken,
     idToken: googleAuth?.idToken,
@@ -60,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             const SizedBox(height: 80.0),
             Padding(
-              padding: const EdgeInsets.fromLTRB(50.0,50.0,50.0,10.0),
+              padding: const EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 10.0),
               child: Column(
                 children: const <Widget>[
                   // Image.asset('assets/logo.png'),
@@ -81,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             //const SizedBox(height: 10.0),
             Padding(
-              padding: const EdgeInsets.fromLTRB(50.0,10.0,50.0,50.0),
+              padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 50.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -94,11 +96,14 @@ class _LoginPageState extends State<LoginPage> {
                           primary: Primary, // background
                           onPrimary: Colors.white, // foreground
                         ),
-                        onPressed: ()  async{
+                        onPressed: () async {
                           await signInWithGoogle();
                           setUserinfo();
                           setState(() => _flag = !_flag);
-                          Navigator.pushNamed(context, '/month_calendar',);
+                          Navigator.pushNamed(
+                            context,
+                            '/month_calendar',
+                          );
                         },
                         child: Text('Google Login'),
                       )
@@ -112,43 +117,43 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  Future setUserinfo() async{
+
+  Future setUserinfo() async {
     final User? user_login = FirebaseAuth.instance.currentUser;
     final firestoreInstance = FirebaseFirestore.instance;
-    final QuerySnapshot result = await firestoreInstance.collection('users').get();
+    final QuerySnapshot result =
+        await firestoreInstance.collection('users').get();
     final List<DocumentSnapshot> documents = result.docs;
     List<String> localUserId = [];
     documents.forEach((data) {
       localUserId.add(data['uid']);
     });
-    if(!(user_login!.isAnonymous)){
-      if(!localUserId.contains(user_login.uid)) {
+    if (!(user_login!.isAnonymous)) {
+      if (!localUserId.contains(user_login.uid)) {
         await FirebaseFirestore.instance.collection("users").add({
           "email": user_login.email,
           "name": user_login.displayName,
           "uid": user_login.uid,
           //"hashtag": FirebaseAuth.instance.currentUser!.hashtag,
         });
-        name_user= user_login.displayName!;
+        name_user = user_login.displayName!;
         url_user = user_login.photoURL!;
         email_user = user_login.email!;
         uid_google = user_login.uid;
       }
-      name_user= user_login.displayName!;
+      name_user = user_login.displayName!;
       url_user = user_login.photoURL!;
       email_user = user_login.email!;
       uid_google = user_login.uid;
-    }
-
-    else{
-      if(!localUserId.contains(user_login.uid)) {
+    } else {
+      if (!localUserId.contains(user_login.uid)) {
         await FirebaseFirestore.instance.collection("users").add({
           "uid": user_login.uid,
         });
       }
-      name_user= user_login.uid;
-      url_user =  'http://handong.edu/site/handong/res/img/logo.png';
-      email_user= "Anonymous";
+      name_user = user_login.uid;
+      url_user = 'http://handong.edu/site/handong/res/img/logo.png';
+      email_user = "Anonymous";
     }
   }
 }
