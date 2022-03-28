@@ -37,6 +37,22 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   table_calendar: ^3.0.4
+  firebase_core:
+  firebase_auth:
+  firebase_storage:
+  firebase_analytics:
+  cloud_firestore:
+  provider:
+  google_sign_in:
+
+
+dependency_overrides:
+  firebase_messaging_platform_interface: 3.1.6
+  firebase_storage_platform_interface: 4.0.14
+  cloud_functions_platform_interface: 5.0.21
+  cloud_firestore_platform_interface: 5.4.13
+  firebase_auth_platform_interface: 6.1.11
+  firebase_database_platform_interface: 0.2.0+5
 
 dev_dependencies:
   flutter_test:
