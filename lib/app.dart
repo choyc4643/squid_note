@@ -16,7 +16,7 @@ class SquidApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Primary,
       ),
-      initialRoute: '/month_calendar',
+      initialRoute: '/login',
       routes: {
         '/login': (context) => LoginPage(),
         '/month_calendar' : (context) => MonthCalendar(),
