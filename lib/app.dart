@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'color.dart';
 import 'month_calendar.dart';
 import 'login.dart';
+
 // import 'mypage.dart';
 
 
@@ -18,6 +19,7 @@ class SquidApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+
         '/login': (context) => LoginPage(),
         '/month_calendar' : (context) => MonthCalendar(),
         // '/mypage' : (context) => const MyPage (),
