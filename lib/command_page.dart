@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:squidgame/month_calendar.dart';
-
+import 'package:squidgame/textstyle.dart';
+import 'package:squidgame/youtube_page.dart';
+import 'SearchFriends.dart';
+import './agora/chatroom.dart';
 class CommandPage extends StatefulWidget {
   @override
   _CommandPageState createState() => _CommandPageState();
@@ -12,7 +15,8 @@ class _CommandPageState extends State<CommandPage> {
   int _selectedIndex = 0; // 처음에 나올 화면 지정
 
   // 이동할 페이지
-  List _pages = [MonthCalendar(), Text('page2'), Text('page3')];
+  List _pages = [MonthCalendar(), SearchFreinds(), ChatRoomPage(), YoutubePage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,10 @@ class _CommandPageState extends State<CommandPage> {
 
         // BottomNavigationBar 위젯
         bottomNavigationBar: BottomNavigationBar(
+          selectedIconTheme: IconThemeData(color: Colors.black),
+          unselectedIconTheme: IconThemeData(color: Colors.grey),
+          selectedLabelStyle: subtitlestyle(color: Colors.black),
+          unselectedLabelStyle: subtitlestyle(color: Colors.grey),
           //type: BottomNavigationBarType.fixed, // bottomNavigationBar item이 4개 이상일 경우
          
           // 클릭 이벤트 
@@ -37,10 +45,14 @@ class _CommandPageState extends State<CommandPage> {
                 icon: Icon(Icons.home), label: 'Home'),
 
             BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: 'Home'),
+                icon: Icon(Icons.manage_accounts_rounded), label: 'Friend'
+            ),
 
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Home'),
+                icon: Icon(Icons.quick_contacts_dialer_outlined), label: 'Call Chat'),
+                
+            BottomNavigationBarItem(
+                icon: Icon(Icons.video_collection_outlined), label: 'Youtube'),
 
          ],
         )
