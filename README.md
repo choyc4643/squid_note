@@ -3,13 +3,13 @@ squidProject
 
 모바일 앱 개발 final project
 
-
+<br/>
 프로젝트 기간 : 2022. 02. 10. ~ 
-
+<br/><br/>
 
 팀원 : 서예지 조영찬 김민수
 
-
+<br/><br/>
 
 Project Info<br/>
 초기 디자인 [Figma] https://www.figma.com/file/rOhVbWZxnkiD0zhnvRnQkn/Untitled?node-id=0%3A1<br/>
