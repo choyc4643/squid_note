@@ -15,4 +15,5 @@ Project Info<br/>
 [Figma] 초기 디자인 https://www.figma.com/file/rOhVbWZxnkiD0zhnvRnQkn/Untitled?node-id=0%3A1<br/>
 [notion] https://www.notion.so/a6af31a9f7074ea9a343e53b9e4edcf6<br/>
 [youtube] https://www.youtube.com/watch?v=tgNfUpkYtS0<br/>
-
+[git] 이전 repo(과정) https://github.com/Yeggggi/Squid_Project<br/>
+ <br/>
