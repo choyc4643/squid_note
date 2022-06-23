@@ -1,10 +1,14 @@
 squidProject
 ===
+
 모바일 앱 개발 final project
+
 
 프로젝트 기간 : 2022. 02. 10. ~ 
 
-#팀원 : 서예지 조영찬 김민수
+
+팀원 : 서예지 조영찬 김민수
+
 
 
 Project Info<br/>
