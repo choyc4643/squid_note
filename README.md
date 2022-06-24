@@ -2,7 +2,7 @@ squidProject
 ===
 
 모바일 앱 개발 final project
-
+식단 기록 어플 + etc
 <br/>
 프로젝트 기간 : 2022. 02. 10. ~ 
 <br/><br/>
